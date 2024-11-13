@@ -1,0 +1,36 @@
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background-color: blue;
+}
+
+.field {
+  width: 400px;
+  height: 40px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  margin-right: 10px;
+}
+
+.field:focus {
+  outline: 2px solid yellow;
+}
+
+.button {
+  padding: 8px 16px;
+  height: 46px;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: lightyellow;
+  transition: 0.3s ease-in-out;
+}
+
+@media (hover: hover) {
+  .button:hover {
+    background-color: yellow;
+  }
+}
