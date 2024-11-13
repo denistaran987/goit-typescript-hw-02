@@ -15,11 +15,12 @@ const SearchBar = ({ onSubmit }) => {
     }
 
     onSubmit(inputValue);
+    e.target.reset();
   };
 
   return (
     <header className={s.header}>
-      <form className={s.form} onSubmit={handleSubmit}>
+      <form className={s.form} name="searchForm" onSubmit={handleSubmit}>
         <input
           className={s.field}
           type="text"
