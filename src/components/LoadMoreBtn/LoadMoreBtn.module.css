@@ -1,0 +1,19 @@
+.button {
+  display: block;
+  margin-inline: auto;
+  padding: 10px 26px;
+  height: 40px;
+  color: #fff;
+  background-color: #4169e1;
+  box-shadow: 0 0 4px 2px blue;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+@media (hover: hover) {
+  .button:hover {
+    background-color: #1e90ff;
+  }
+}

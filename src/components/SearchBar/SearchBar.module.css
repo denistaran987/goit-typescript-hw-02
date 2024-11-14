@@ -1,9 +1,10 @@
 .header {
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px;
-  background-color: blue;
+  padding: 12px;
+  background-color: #4169e1;
 }
 
 .field {
@@ -22,7 +23,7 @@
 
 .button {
   padding: 8px 16px;
-  height: 46px;
+  height: 40px;
   border-radius: 8px;
   cursor: pointer;
   background-color: lightyellow;
