@@ -4,3 +4,7 @@
   gap: 8px;
   padding: 4px;
 }
+
+.item:hover {
+  cursor: zoom-in;
+}

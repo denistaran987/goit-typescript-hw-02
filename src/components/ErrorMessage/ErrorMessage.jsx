@@ -1,9 +1,7 @@
-const ErrorMessage = () => {
+const ErrorMessage = ({ message }) => {
   return (
     <>
-      <p style={{ textAlign: 'center', paddingBlock: 10, fontSize: 20, color: 'red' }}>
-        Sorry, something went wrong. Please try again later
-      </p>
+      <p style={{ textAlign: 'center', paddingBlock: 10, fontSize: 20, color: 'red' }}>{message}</p>
     </>
   );
 };

@@ -4,7 +4,7 @@ const LoadMoreBtn = ({ onPage }) => {
   return (
     <div style={{ paddingBlock: 10 }}>
       <button onClick={onPage} className={s.button} type="button">
-        Load more
+        Load more . . .
       </button>
     </div>
   );

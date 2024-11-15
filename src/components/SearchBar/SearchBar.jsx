@@ -19,21 +19,24 @@ const SearchBar = ({ onSubmit }) => {
   };
 
   return (
-    <header className={s.header}>
-      <form className={s.form} name="searchForm" onSubmit={handleSubmit}>
-        <input
-          className={s.field}
-          type="text"
-          name="searchInput"
-          autoComplete="off"
-          autoFocus
-          placeholder="Search images and photos"
-        />
-        <button className={s.button} type="submit">
-          Search
-        </button>
-      </form>
-    </header>
+    <>
+      <div className={s.placeholder}></div>
+      <header className={s.header}>
+        <form className={s.form} name="searchForm" onSubmit={handleSubmit}>
+          <input
+            className={s.field}
+            type="text"
+            name="searchInput"
+            autoComplete="off"
+            autoFocus
+            placeholder="Search images and photos"
+          />
+          <button className={s.button} type="submit">
+            Search
+          </button>
+        </form>
+      </header>
+    </>
   );
 };
 export default SearchBar;
