@@ -6,7 +6,7 @@ const SearchBar = ({ onSubmit }) => {
     e.preventDefault();
     const inputValue = e.target.elements.searchInput.value.trim();
     if (inputValue === '') {
-      toast.error('Please enter the field', {
+      toast.error('Please enter text to search for images', {
         style: {
           backgroundColor: '#D924247F',
           color: '#fff',
