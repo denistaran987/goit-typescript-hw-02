@@ -5,7 +5,7 @@ import './index.css';
 import App from './components/App';
 import { Toaster } from 'react-hot-toast';
 
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById('root') as HTMLElement).render(
   <StrictMode>
     <Toaster position="bottom-right" reverseOrder={false} />
     <App />
