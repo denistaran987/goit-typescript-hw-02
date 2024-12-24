@@ -6,16 +6,22 @@ import ErrorMessage from './ErrorMessage/ErrorMessage';
 import LoadMoreBtn from './LoadMoreBtn/LoadMoreBtn';
 import ImageModal from './ImageModal/ImageModal';
 import Loader from './Loader/Loader';
+import { ImageResult } from '../types';
 
-function App() {
-  const [query, setQuery] = useState('');
-  const [page, setPage] = useState(1);
-  const [images, setImages] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
-  const [imageURL, setImageURL] = useState('');
-  const [totalPages, setTotalPages] = useState(0);
+interface fetchImagesResponse {
+  results: ImageResult[];
+  total_pages: number;
+}
+
+function App(): JSX.Element {
+  const [query, setQuery] = useState<string>('');
+  const [page, setPage] = useState<number>(1);
+  const [images, setImages] = useState<ImageResult[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isError, setIsError] = useState<string | boolean>(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [imageURL, setImageURL] = useState<string>('');
+  const [totalPages, setTotalPages] = useState<number>(0);
 
   // Функція отримання і обробки даних
   useEffect(() => {
@@ -25,7 +31,7 @@ function App() {
       try {
         setIsLoading(true);
         setIsError(false);
-        const { results, total_pages } = await fetchImages(query, page);
+        const { results, total_pages } = await fetchImages<fetchImagesResponse>(query, page);
         setImages(prev => [...prev, ...results]);
         setTotalPages(total_pages);
 
@@ -33,8 +39,8 @@ function App() {
           throw new Error('No images found for your search query. Please try again.');
         }
       } catch (error) {
-        console.log(error.message || error);
         const errorMessage =
+          error instanceof Error &&
           error.message === 'No images found for your search query. Please try again.'
             ? error.message
             : 'Sorry, something went wrong. Please try again later';
@@ -48,13 +54,13 @@ function App() {
   }, [query, page]);
 
   // Функція пошуку за запитом
-  const onSubmit = value => {
+  const onSubmit = (value: string): void => {
     setPage(1);
     setImages([]);
     setQuery(value);
   };
 
-  const onPage = () => {
+  const onPage = (): void => {
     setPage(prev => prev + 1);
 
     setTimeout(() => {
@@ -67,13 +73,13 @@ function App() {
   };
 
   // Функція відкриття модального вікна
-  function openModal(imgRegular) {
+  function openModal(imgRegular: string): void {
     setImageURL(imgRegular);
     setIsOpen(true);
   }
 
   // Функція закриття модального вікна
-  const closeModal = () => setIsOpen(false);
+  const closeModal = (): void => setIsOpen(false);
 
   const showLoadMore = images.length > 0 && page < totalPages;
 
@@ -84,15 +90,7 @@ function App() {
       {isLoading && <Loader />}
       {isError && <ErrorMessage message={isError} />}
       {showLoadMore && <LoadMoreBtn onPage={onPage} />}
-      {isOpen && (
-        <ImageModal
-          imageURL={imageURL}
-          images={images}
-          isOpen={isOpen}
-          openModal={openModal}
-          onRequestClose={closeModal}
-        />
-      )}
+      {isOpen && <ImageModal imageURL={imageURL} isOpen={isOpen} onRequestClose={closeModal} />}
     </div>
   );
 }

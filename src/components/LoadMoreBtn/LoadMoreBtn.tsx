@@ -1,6 +1,11 @@
+import { FC } from 'react';
 import s from './LoadMoreBtn.module.css';
 
-const LoadMoreBtn = ({ onPage }) => {
+interface LoadMoreBtnProps {
+  onPage: () => void;
+}
+
+const LoadMoreBtn: FC<LoadMoreBtnProps> = ({ onPage }) => {
   return (
     <div style={{ paddingBlock: 10 }}>
       <button onClick={onPage} className={s.button} type="button">

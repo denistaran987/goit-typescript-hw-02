@@ -1,10 +1,20 @@
 import toast from 'react-hot-toast';
 import s from './SearchBar.module.css';
+import { FC, FormEvent, useRef } from 'react';
 
-const SearchBar = ({ onSubmit }) => {
-  const handleSubmit = e => {
+interface SearchBarProps {
+  onSubmit: (value: string) => void;
+}
+
+const SearchBar: FC<SearchBarProps> = ({ onSubmit }) => {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const inputValue = e.target.elements.searchInput.value.trim();
+
+    const input = inputRef.current;
+    if (!input) return;
+
+    const inputValue: string = input.value.trim();
     if (inputValue === '') {
       toast.error('Please enter text to search for images', {
         style: {
@@ -12,10 +22,11 @@ const SearchBar = ({ onSubmit }) => {
           color: '#fff',
         },
       });
+      return;
     }
 
     onSubmit(inputValue);
-    e.target.reset();
+    input.value = '';
   };
 
   return (
@@ -24,6 +35,7 @@ const SearchBar = ({ onSubmit }) => {
       <header className={s.header}>
         <form className={s.form} name="searchForm" onSubmit={handleSubmit}>
           <input
+            ref={inputRef}
             className={s.field}
             type="text"
             name="searchInput"

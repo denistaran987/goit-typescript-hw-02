@@ -1,8 +1,15 @@
+import { FC } from 'react';
 import ReactModal from 'react-modal';
 ReactModal.setAppElement('#root');
 
-const ImageModal = ({ isOpen, imageURL, onRequestClose }) => {
-  const customStyles = {
+interface ImageModalProps {
+  imageURL: string;
+  onRequestClose: () => void;
+  isOpen: boolean;
+}
+
+const ImageModal: FC<ImageModalProps> = ({ isOpen, imageURL, onRequestClose }) => {
+  const customStyles: ReactModal.Styles = {
     content: {
       position: 'relative',
       inset: 0,
